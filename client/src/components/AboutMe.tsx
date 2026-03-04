@@ -54,7 +54,7 @@ const AboutMe = ({ }: AboutMeProps) => {
       <div className="container" ref={container}>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="slide-up-and-fade">
-            <h2 className="text-4xl md:text-5xl font-anton text-primary mb-8 uppercase">About Me</h2>
+            <h2 className="text-4xl md:text-5xl font-anton text-primary mb-8 uppercase">This is Me</h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
               I am a passionate Fullstack Developer with a focus on building interactive and responsive web applications. I love turning complex problems into simple, beautiful, and intuitive designs.
             </p>
