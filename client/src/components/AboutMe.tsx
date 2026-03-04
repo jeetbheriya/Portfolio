@@ -2,10 +2,13 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { IAppData } from '../types'; // Import IAppData
 
-// gsap.registerPlugin(ScrollTrigger, useGSAP); // Already registered in Banner.tsx
+interface AboutMeProps {
+    appData: IAppData | null; // Define appData prop with IAppData | null type
+}
 
-const AboutMe = () => {
+const AboutMe = ({ appData }: AboutMeProps) => { // Accept appData as a prop
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(

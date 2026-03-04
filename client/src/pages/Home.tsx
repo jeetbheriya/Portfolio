@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { getProjects, getStack, getAppData } from '../services/api';
-import { IProject } from '../types'; // Assuming IProject is defined
+import { IProject, IAppData } from '../types'; // Import IAppData
 
 // Placeholder components - these will be replaced with actual migrated components later
 import Banner from '../components/Banner';
@@ -11,8 +10,8 @@ import ProjectList from '../components/ProjectList';
 
 const Home = () => {
   const [projects, setProjects] = useState<IProject[]>([]);
-  const [myStack, setMyStack] = useState(null);
-  const [appData, setAppData] = useState(null);
+  const [myStack, setMyStack] = useState<any | null>(null); // Added type for myStack, can be refined later
+  const [appData, setAppData] = useState<IAppData | null>(null); // Use IAppData
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

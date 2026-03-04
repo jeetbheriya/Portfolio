@@ -25,3 +25,9 @@ export interface IProject {
     liveUrl?: string;
     sourceCode?: string;
 }
+
+export interface IAppData {
+    upworkProfile?: string;
+    // Add other properties as they become known from the backend data
+}
+
