@@ -10,7 +10,7 @@ import 'lenis/dist/lenis.css'; // Import lenis styles
 
 function App() {
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <Router>
       <ReactLenis root options={{ lerp: 0.1, duration: 1.4 }}>
         <Snowfall 
           snowflakeCount={75} // Reduced density

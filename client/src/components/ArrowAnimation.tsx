@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all'; // Keep this import as it's used in the logic
+
 import { useRef } from 'react';
 
 // gsap.registerPlugin(ScrollTrigger, useGSAP); // Removed as it will be registered in Banner.tsx

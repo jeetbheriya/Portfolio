@@ -2,7 +2,7 @@
 import SectionTitle from './SectionTitle'; // Adjusted path
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
+
 import { useRef } from 'react';
 
 // gsap.registerPlugin(useGSAP, ScrollTrigger); // Already registered in Banner.tsx

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'; // Changed from next/link
-import React, { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
 import { Variant } from '../types'; // Adjusted path
 import { cn } from '../lib/utils'; // Adjusted path
 

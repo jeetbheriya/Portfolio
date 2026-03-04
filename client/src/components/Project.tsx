@@ -3,7 +3,7 @@ import { ArrowUpRight, Github } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import React, { useRef, useState } from 'react'; // Import useState
+import { useRef, useState } from 'react'; // Import useState
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
