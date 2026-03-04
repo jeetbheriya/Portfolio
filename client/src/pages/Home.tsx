@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getProjects, getStack, getAppData } from '../services/api';
 import { IProject, IAppData } from '../types'; // Import IAppData
 import { PROJECTS, MY_STACK, GENERAL_INFO } from '../lib/data'; // Import local fallback data
@@ -15,7 +15,7 @@ const Home = () => {
   const [myStack, setMyStack] = useState<any | null>(MY_STACK); // Added type for myStack, can be refined later
   const [appData, setAppData] = useState<IAppData | null>(GENERAL_INFO as any); // Use IAppData
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, _setError] = useState<string | null>(null);
 
   useEffect(() => {
                     const fetchData = async () => {
