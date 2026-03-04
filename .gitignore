@@ -1,0 +1,16 @@
+# Custom ignored files
+ColdStart.png
+QuickSEAT.png
+"LeetCode Profile.png"
+"Jeet's Resume 2.0.pdf"
+
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+
+# Dependency lock files
+package-lock.json
