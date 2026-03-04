@@ -3,10 +3,13 @@ import ArrowAnimation from './ArrowAnimation'; // Adjusted path
 import Button from './Button'; // Adjusted path
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React from 'react';
 import { IAppData } from '../types'; // Import IAppData
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 interface BannerProps {
   appData: IAppData | null; // Use IAppData | null

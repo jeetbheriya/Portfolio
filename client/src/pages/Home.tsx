@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import { getProjects, getStack, getAppData } from '../services/api';
 import { IProject, IAppData } from '../types'; // Import IAppData
+import { PROJECTS, MY_STACK, GENERAL_INFO } from '../lib/data'; // Import local fallback data
 
 // Placeholder components - these will be replaced with actual migrated components later
 import Banner from '../components/Banner';
@@ -9,9 +11,9 @@ import ProjectList from '../components/ProjectList';
 
 
 const Home = () => {
-  const [projects, setProjects] = useState<IProject[]>([]);
-  const [myStack, setMyStack] = useState<any | null>(null); // Added type for myStack, can be refined later
-  const [appData, setAppData] = useState<IAppData | null>(null); // Use IAppData
+  const [projects, setProjects] = useState<IProject[]>(PROJECTS as any);
+  const [myStack, setMyStack] = useState<any | null>(MY_STACK); // Added type for myStack, can be refined later
+  const [appData, setAppData] = useState<IAppData | null>(GENERAL_INFO as any); // Use IAppData
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,12 +25,13 @@ const Home = () => {
                                 getStack(),
                                 getAppData(),
                             ]);
-                            setProjects(projectsData);
-                            setMyStack(stackData);
-                            console.log('myStack after API call:', stackData);
-                            setAppData(appDataData);
+                            
+                            if (projectsData && projectsData.length > 0) setProjects(projectsData);
+                            if (stackData) setMyStack(stackData);
+                            if (appDataData) setAppData(appDataData);
                         } catch (err: any) {
-                            setError(err.message);
+                            console.error("API Fetch Error, using local data:", err);
+                            // We already have local data in state
                         } finally {
                             setLoading(false);
                         }
@@ -46,7 +49,7 @@ const Home = () => {
   return (
     <div className="page-">
       <Banner appData={appData} />
-      <AboutMe appData={appData} />
+      <AboutMe />
       <Skills myStack={myStack} />
       <ProjectList projects={projects} />
       <footer className="py-section text-center">

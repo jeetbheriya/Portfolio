@@ -3,12 +3,13 @@ import SectionTitle from './SectionTitle'; // Adjusted path
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import { IExperience } from '../types';
 
 // gsap.registerPlugin(useGSAP, ScrollTrigger); // Already registered in Banner.tsx
 
 interface ExperiencesProps {
-  experiences: any[]; // Define a proper type for experiences if available
+  experiences: IExperience[]; // Use IExperience type
 }
 
 const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {

@@ -12,7 +12,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     return (
-        <section className="pb-section" id="selected-projects">
+        <section className="py-20" id="selected-projects">
             <div className="container">
                 <SectionTitle title="MY PROJECTS" />
 

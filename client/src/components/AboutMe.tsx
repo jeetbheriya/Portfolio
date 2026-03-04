@@ -1,92 +1,76 @@
-"use client"; // Removed, but leaving for context from original file
+"use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-import { IAppData } from '../types'; // Import IAppData
+import { IAppData } from '../types';
 
-interface AboutMeProps {
-    appData: IAppData | null; // Define appData prop with IAppData | null type
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-const AboutMe = ({ appData }: AboutMeProps) => { // Accept appData as a prop
+interface AboutMeProps {
+}
+
+const AboutMe = ({ }: AboutMeProps) => {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          id: "about-me-in",
-          trigger: container.current,
-          start: "top 70%",
-          end: "bottom bottom",
-          scrub: 0.5,
-        },
-      });
+  useGSAP(() => {
+    // ONE timeline to rule them all
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top bottom", // Starts when top of section hits bottom of screen
+        end: "bottom top",    // Ends when bottom of section hits top of screen
+        scrub: true,
+      }
+    });
 
-      tl.from(".slide-up-and-fade", {
-        y: 150,
-        opacity: 0,
-        stagger: 0.05,
-      });
-    },
-    { scope: container },
-  );
+    // 1. Entrance: Elements slide up and fade in
+    tl.from(".slide-up-and-fade", {
+      y: 100,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 2,
+      ease: "power2.out"
+    })
+    // 2. The "Stay" phase: Elements stay visible while you scroll through the section
+    .to(".slide-up-and-fade", {
+      opacity: 1, 
+      duration: 5 
+    }) 
+    // 3. Exit: Elements slide further up and fade out
+    .to(".slide-up-and-fade", {
+      y: -100,
+      opacity: 0,
+      stagger: 0.05,
+      duration: 2,
+      ease: "power2.in"
+    });
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          id: "about-me-out",
-          trigger: container.current,
-          start: "bottom 50%",
-          end: "bottom 10%",
-          scrub: 0.5,
-        },
-      });
-
-      tl.to(".slide-up-and-fade", {
-        y: -150,
-        opacity: 0,
-        stagger: 0.02,
-      });
-    },
-    { scope: container },
-  );
+  }, { scope: container });
 
   return (
-    <section className="pb-section" id="about-me">
+    <section className="py-16 md:py-24 overflow-hidden" id="about-me">
       <div className="container" ref={container}>
-        <h2 className="text-4xl md:text-6xl font-thin mb-20 slide-up-and-fade">
-          I believe in a user centered design approach, ensuring that every
-          project I work on is tailored to meet the specific needs of its users.
-        </h2>
-
-        <p className="pb-3 border-b text-muted-foreground slide-up-and-fade">
-          This is me.
-        </p>
-
-        <div className="grid md:grid-cols-12 mt-9">
-          <div className="md:col-span-5">
-            <p className="text-5xl slide-up-and-fade">Hi, I&apos;m Jeet.</p>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="slide-up-and-fade">
+            <h2 className="text-4xl md:text-5xl font-anton text-primary mb-8 uppercase">About Me</h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
+              I am a passionate Fullstack Developer with a focus on building interactive and responsive web applications. I love turning complex problems into simple, beautiful, and intuitive designs.
+            </p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or solving challenges on LeetCode. I am always eager to learn and take on new challenges.
+            </p>
           </div>
-          <div className="md:col-span-7">
-            <div className="text-lg text-muted-foreground max-w-[450px]">
-              <p className="slide-up-and-fade">
-                Third-year B.Tech CSE (AI) student specializing in full-stack
-                MERN development and algorithmic problem solving. Proven track
-                record of building scalable applications, including a real-time
-                professional ecosystem (ColdStart), a restaurant management
-                system (QuickSEAT), and an Airbnb clone. Skilled in React,
-                Node.js, and Socket.IO, actively
-                seeking web development internships.
-              </p>
-              <p className="mt-3 slide-up-and-fade">
-                My approach focuses on creating scalable, high-performing
-                solutions tailored to both user needs and business objectives.
-                By prioritizing performance, accessibility, and responsiveness,
-                I strive to deliver experiences that not only engage users but
-                also drive tangible results.
-              </p>
+          <div className="slide-up-and-fade flex justify-center">
+            <div className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-primary rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+               <div className="absolute inset-0 bg-primary/20 hover:bg-transparent transition-all duration-500"></div>
+               <img 
+                 src="/Jeet.jpg" 
+                 alt="Jeet Bheriya" 
+                 className="w-full h-full object-cover"
+               />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IProject, IAppData, IExperience } from '../types';
 
 const API_URL = 'http://localhost:5000/api'; // Assuming your Express server runs on port 5000
 
@@ -6,7 +7,7 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
-export const getProjects = async () => {
+export const getProjects = async (): Promise<IProject[]> => {
   try {
     const response = await api.get('/projects');
     return response.data;
@@ -16,7 +17,7 @@ export const getProjects = async () => {
   }
 };
 
-export const getProjectBySlug = async (slug) => {
+export const getProjectBySlug = async (slug: string): Promise<IProject | null> => {
   try {
     const response = await api.get(`/projects/${slug}`);
     return response.data;
@@ -26,7 +27,7 @@ export const getProjectBySlug = async (slug) => {
   }
 };
 
-export const getStack = async () => {
+export const getStack = async (): Promise<any | null> => { // Adjust 'any' to specific type if available
   try {
     const response = await api.get('/stack');
     return response.data;
@@ -36,7 +37,7 @@ export const getStack = async () => {
   }
 };
 
-export const getAppData = async () => {
+export const getAppData = async (): Promise<IAppData | null> => {
   try {
     const response = await api.get('/appdata');
     return response.data;
@@ -46,7 +47,7 @@ export const getAppData = async () => {
   }
 };
 
-export const getExperiences = async () => {
+export const getExperiences = async (): Promise<IExperience[]> => {
     try {
         const response = await api.get('/experiences');
         return response.data;

@@ -59,7 +59,7 @@ const Skills: React.FC<SkillsProps> = ({ myStack }) => {
     );
 
     return (
-        <section id="my-stack" ref={containerRef}>
+        <section id="my-stack" ref={containerRef} className="py-16 md:py-24">
             <div className="container">
                 <SectionTitle title="My Stack" />
 

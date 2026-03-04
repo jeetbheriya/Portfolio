@@ -88,12 +88,16 @@ const Project = ({ project, index }: Props) => {
             {/* Project Image on Hover */}
             {project.thumbnail && (
                 <div 
-                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 ${isHovered ? 'block' : 'hidden'}`}
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-auto pointer-events-none z-10 transition-all duration-500 ease-out ${
+                        isHovered 
+                        ? 'opacity-100 scale-100 rotate-2' 
+                        : 'opacity-0 scale-95 rotate-0'
+                    }`}
                 >
                     <img 
                         src={project.thumbnail} 
                         alt={project.title} 
-                        className="w-full h-full object-cover rounded-lg shadow-lg"
+                        className="w-full h-full object-cover rounded-lg shadow-2xl border-2 border-white/20"
                     />
                 </div>
             )}
